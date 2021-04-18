@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * \* Created: liuhuichao
  * \* Date: 2017/9/27
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
  * \Controller
  */
 @Controller
-@RequestMapping("test")
 public class TestController {
 /*    @ResponseBody
     @RequestMapping(value = "console", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8;")

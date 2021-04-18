@@ -24,7 +24,7 @@ public class ClazController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "console", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8;")
+    @RequestMapping(value = "allclaz.api", method = RequestMethod.GET)
     public  List<Claz> getAllClaz( ) {
         List<Claz> ront= clazService.getAllClaz();
         return ront;
