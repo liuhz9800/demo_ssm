@@ -14,6 +14,6 @@ public interface ClazDao {
      * @return
      */
     @SelectProvider(type = ClazDaoImpl.class, method = "getAllClaz")
-    List<Claz> getAllGoodsList();
+    List<Claz> getAllClaz();
 
 }

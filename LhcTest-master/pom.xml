@@ -25,7 +25,7 @@
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <pagehelper.version>4.0.0</pagehelper.version>
         <jsqlparser.version>0.9.5</jsqlparser.version>
-        <mysql.connector.java.version>5.1.38</mysql.connector.java.version>
+        <mysql.connector.java.version>8.0.11</mysql.connector.java.version>
         <druid.version>1.0.12</druid.version>
         <aspectjweaver.version>1.8.4</aspectjweaver.version>
         <log4j.version>1.2.17</log4j.version>
