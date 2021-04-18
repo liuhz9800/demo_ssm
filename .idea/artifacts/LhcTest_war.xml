@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="BcssLocked.war">
+    <root id="archive" name="LhcTest-master.war">
       <element id="artifact" artifact-name="LhcTest:war exploded" />
     </root>
   </artifact>

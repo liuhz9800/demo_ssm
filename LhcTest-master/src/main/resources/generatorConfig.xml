@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 数据库驱动包 -->
-    <classPathEntry location="D:\Java\jar\mysql-connector-java-5.1.39-bin.jar"/><!--配置绝对路径 -->
+    <classPathEntry location="E:\MySQL\mysql-connector-java-5.1.7-bin.jar"/><!--配置绝对路径 -->
     <!-- 配置数据源连接 -->
     <context id="Mysql" targetRuntime="MyBatis3">
         <property name="beginningDelimiter" value=""/>
@@ -20,9 +20,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/bcsslocked?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="root">
+                        password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -44,8 +44,10 @@
         </javaClientGenerator>
 
         <!-- 要生成哪些表 -->
-      <!--  <table tableName="goods" domainObjectName="Goods" schema="">
-        </table>-->
+        <table tableName="claz" domainObjectName="Claz" schema="">
+        </table>
+        <table tableName="student" domainObjectName="Student" schema="">
+        </table>
 
 
 
