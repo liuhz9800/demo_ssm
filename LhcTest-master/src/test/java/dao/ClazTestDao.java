@@ -5,6 +5,7 @@ import com.test.entity.Claz;
 import org.apache.xml.security.utils.SignerOutputStream;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,5 +29,9 @@ public class ClazTestDao {
         List<Claz> result= clazDao.getAllClaz();
         System.out.println(JSONObject.valueToString(result));
     }
-
+    @Test
+    public void testGetClaz(){
+        Claz result= clazDao.getClaz(1);
+        System.out.println(JSONObject.valueToString(result));
+    }
 }

@@ -17,61 +17,34 @@
 	<!-- 可以扫描controller、service、... 这里让扫描controller，指定controller的包 -->
 	<context:component-scan base-package="com.test.controller">
 	</context:component-scan>
-	<!-- 根据客户端的不同的请求决定不同的view进行响应, 如 /blog/1.json /blog/1.xml -->
-	<bean
-			class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<!-- 设置为true以忽略对Accept Header的支持 -->
-		<property name="ignoreAcceptHeader" value="true" />
-		<!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
-		<property name="defaultContentType" value="text/html" />
 
-		<!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
-		<property name="mediaTypes">
-			<map>
-				<entry key="json" value="application/json" />
-				<entry key="xml" value="application/xml" />
-			</map>
-		</property>
-		<!-- 用于开启 /userinfo/123?format=json 的支持 -->
-		<property name="favorParameter" value="false" />
-		<property name="viewResolvers">
-			<list>
-				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-				<bean
-						class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-					<property name="viewClass"
-							  value="org.springframework.web.servlet.view.JstlView" />
-					<property name="prefix" value="/WEB-INF/pages/" />
-					<property name="suffix" value=".jsp" />
-				</bean>
-			</list>
-		</property>
-		<property name="defaultViews">
-			<list>
-				<!-- for application/json -->
-				<bean
-						class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-				<!-- xml视图，XStreamMarshaller，可以转换任何形式的java对象 -->
-				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-					<property name="marshaller">
-						<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
-							<property name="autodetectAnnotations" value="true" />
-						</bean>
-					</property>
-				</bean>
-			</list>
-		</property>
-	</bean>
+	<!-- 启动Springmvc注解驱动 -->
+	<mvc:annotation-driven/>
+	<!-- 返回json 方法一 需要导入 fastjson.jar包 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+			<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
     <!-- 视图解析器 解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包 -->
     <!--springMvc在进行试图解析的时候，会根据前缀，返回的视图名称，后缀拼接好后去对应位置寻找视图-->
-<!--	<bean
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		&lt;!&ndash; 配置jsp路径的前缀 &ndash;&gt;
+		<!-- 配置jsp路径的前缀 -->
 		<property name="prefix" value="/WEB-INF/jsp/" />
-		&lt;!&ndash; 配置jsp路径的后缀 &ndash;&gt;
+		<!-- 配置jsp路径的后缀 -->
 		<property name="suffix" value=".jsp" />
-	</bean>-->
+	</bean>
 
 	<!--&lt;!&ndash; 国际化配置 &ndash;&gt;-->
 	<bean id="localeResolver"
@@ -85,14 +58,6 @@
 			</list>
 		</property>
 		<property name="useCodeAsDefaultMessage" value="true" />
-	</bean>
-	<!-- 注册验证器 -->
-	<mvc:annotation-driven validator="validator" />
-
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
-		<!-- 这里配置将使用上面国际化配置的messageSource -->
-		<property name="validationMessageSource" ref="messageSource"/>
 	</bean>
 
 
