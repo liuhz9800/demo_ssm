@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LhcTest:war">
+    <output-path>$PROJECT_DIR$/LhcTest-master/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>LhcTest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BcssLocked.war">
+      <element id="artifact" artifact-name="LhcTest:war exploded" />
+    </root>
+  </artifact>
+</component>
